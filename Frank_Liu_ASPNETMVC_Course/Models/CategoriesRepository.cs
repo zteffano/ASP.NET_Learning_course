@@ -40,9 +40,9 @@
             return null;
         }
 
-        public static void UpdateCategory(Category category)
+        public static void UpdateCategory(int categoryId, Category category)
         {
-            var categoryToUpdate = _categories.FirstOrDefault(x => x.Id == category.Id);
+            var categoryToUpdate = _categories.FirstOrDefault(x => x.Id == categoryId);
             if (categoryToUpdate != null)
             {
                 categoryToUpdate.Name = category.Name;
@@ -52,10 +52,12 @@
 
         public static void DeleteCategory(int categoryId)
         {
+            Console.WriteLine("--> Calling Delete Category");
             var categoryToDelete = _categories.FirstOrDefault(x => x.Id == categoryId);
             if (categoryToDelete != null)
             {
                 _categories.Remove(categoryToDelete);
+                Console.WriteLine($"Category deleted with Name: {categoryToDelete.Name}");
             }
         }
     }
